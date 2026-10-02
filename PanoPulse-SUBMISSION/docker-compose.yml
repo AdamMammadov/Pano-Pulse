@@ -1,0 +1,27 @@
+version: "3.9"
+
+# On-prem tam yerləşdirmə: `docker compose up -d` kifayətdir.
+# Heç bir xarici/cloud servis çağırılmır — hər şey yerli şəbəkədə qalır.
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"   # REST API + dashboard data
+      - "5020:5020"   # Modbus TCP (SCADA inteqrasiyası)
+    volumes:
+      - panopulse_data:/data
+    environment:
+      - PANOPULSE_API_KEY=${PANOPULSE_API_KEY:-panopulse-dev-key-CHANGE-ME}
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  panopulse_data:

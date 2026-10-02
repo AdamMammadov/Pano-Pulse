@@ -1,0 +1,73 @@
+:root {
+  --bg: #0D1214;
+  --panel: #161C1F;
+  --panel-2: #1D2427;
+  --border: #2B3338;
+  --text: #E8EBEA;
+  --text-dim: #8B9598;
+  --copper: #D98B3F;
+  --copper-dim: #8A5D30;
+  --teal: #3FB89C;
+  --watch: #D9B23F;
+  --warning: #E3873A;
+  --critical: #E2574A;
+  --info: #4FA3D1;
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes flash-critical {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(226, 87, 74, 0.6); }
+  50% { box-shadow: 0 0 0 10px rgba(226, 87, 74, 0); }
+}
+
+.critical-flash {
+  animation: flash-critical 1s ease-out infinite;
+}
+
+@keyframes copilot-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(217, 139, 63, 0.5); }
+  50% { box-shadow: 0 0 20px rgba(217, 139, 63, 0.9); }
+}
+
+.copilot-pulse {
+  animation: copilot-glow 2s ease-in-out infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter-cursor {
+  animation: blink-cursor 0.8s step-start infinite;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes demo-banner-pulse {
+  0%, 100% { border-color: var(--copper); }
+  50% { border-color: var(--copper-dim); }
+}
